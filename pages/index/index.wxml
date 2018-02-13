@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="user-title" wx:if="{{ user.nickName }}">
+  <view>
+    亲爱的小主 {{user.nickName}}
+  </view>
+  <view style="margin-top:30rpx;">
+    你希望回忆过去还是珍惜现在呢？
+  </view>
+</view>
+<view  wx:if="{{ user.nickName }}">
+  <view class="flag-frame">
+      <view class="flag-item" bindtap='gallary'>
+          <view>回忆过去</view>
+      </view>
+      <view class="flag-item" bindtap='photo'>
+          <view>珍惜现在</view>
+      </view>
+  </view>
+</view>
+<view wx:else>为了更好的体验产品，请提供授权，谢谢</view>
