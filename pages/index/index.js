@@ -5,9 +5,10 @@ const app = getApp()
 
 Page({
   data: {
-    flag: [],
-    userFlag:"",
-    user: app.globalData.userInfo
+    user: app.globalData.userInfo,
+    name:'',
+    path:'',
+    remark:''
   },
 
   onLoad: function () {
@@ -25,21 +26,29 @@ Page({
   },
 
   photo(e) {
+    let that = this
     wx.chooseImage({
       count: 1, // 默认9
       success: function (res) {
         let MyFile = new wx.BaaS.File()
-        let fileParams = { filePath: res.tempFilePaths[0] }
-        let metaData = { categoryName: 'yuki' }
+        let fileParams = { 
+          filePath: res.tempFilePaths[0],
+        }
+        let metaData = { categoryName: 'sdk' }
 
         MyFile.upload(fileParams, metaData).then((res) => {
-          let data = res.data  // res.data 为 Object 类型
-          console.log(data)
+          console.log(res.data.path)
+          that.data.path = res.data.path // res.data 为 Object 类型
+
+          util.addPhoto(that, (res) => {
+            console.log(res.data)
+          })
         }, (err) => {
 
         })
       }
     })
+
   },
 
   gallary(e) {

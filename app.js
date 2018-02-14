@@ -9,9 +9,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    clientId: '', // 从 BaaS 后台获取 ClientID
-    tableFlagId: 22556,
-    tableResultId: 23236,
+    tablePhotoId: 25388,
     cityName: '',
     cityImage: ''
   }
