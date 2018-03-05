@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/city/city"
+    "pages/photo/photo",
+    "pages/gallary/gallary",
+    "pages/photoEdit/photoEdit"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,23 +1,24 @@
-// pages/city/city.js
-var app = getApp();
+// pages/gallary/gallary.js
+const util = require('../../utils/util.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-      cityName: '',
-      cityImage: ''
+    imageUrlList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let url = app.globalData.cityImage + '!/roundrect/10'
-    this.setData({
-      cityImage: url,
-      cityName: app.globalData.cityName
+    util.getPhotos(this, (res) => {
+      console.log(res.data.objects)
+      this.setData({
+        imageUrlList: res.data.objects
+      })
     })
   },
 
@@ -68,5 +69,25 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  previewImage: function (e) {
+    var current = e.target.dataset.src;
+    var imageList = this.data.imageUrlList;
+    var urlList = []
+    for (var i = 0; i < imageList.length; i++) {
+      urlList.push(imageList[i].path)
+    }
+    wx.previewImage({
+      current: current, // 当前显示图片的http链接 
+      urls: urlList // 需要预览的图片http链接列表 
+    })
+  },
+
+  editPhoto: function (e) {
+    console.log(e.target.dataset.photo)
+    wx.navigateTo({
+      url: '../photoEdit/photoEdit?image=' + e.target.dataset.imageInfo
+    })
   }
 })

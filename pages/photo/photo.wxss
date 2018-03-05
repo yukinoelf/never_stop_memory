@@ -1,0 +1,44 @@
+/* pages/photo/photo.wxss */
+.photo {
+  margin-top: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100%;
+  flex-direction: column;
+}
+
+.input_style{
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 50px;
+  
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+}
+
+.position_style{
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 30px;
+  font-size: 15px;
+  font-weight:bold;
+  color: red;
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+}
+
+.address_style{
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 15px;
+  height: 30px;
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+}

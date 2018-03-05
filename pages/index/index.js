@@ -15,44 +15,16 @@ Page({
     this.checkSettingStatus()
   },
 
-  fetchFlagList() {
-    util.getFlag(this, (res) => {
-      console.log(res.data.objects)
-      this.setData({
-        flag: res.data.objects, // bookList array, mock data in mock/mock.js
-        user: app.globalData.userInfo
-      })
-    })
-  },
-
   photo(e) {
-    let that = this
-    wx.chooseImage({
-      count: 1, // 默认9
-      success: function (res) {
-        let MyFile = new wx.BaaS.File()
-        let fileParams = { 
-          filePath: res.tempFilePaths[0],
-        }
-        let metaData = { categoryName: 'sdk' }
-
-        MyFile.upload(fileParams, metaData).then((res) => {
-          console.log(res.data.path)
-          that.data.path = res.data.path // res.data 为 Object 类型
-
-          util.addPhoto(that, (res) => {
-            console.log(res.data)
-          })
-        }, (err) => {
-
-        })
-      }
+    wx.navigateTo({
+      url: '../photo/photo'
     })
-
   },
 
   gallary(e) {
-    console.log("gallary")
+    wx.navigateTo({
+      url: '../gallary/gallary'
+    })
   },
 
   checkSettingStatus: function (cb) {
@@ -110,5 +82,5 @@ Page({
         console.log(res)
       },
     })
-  }
+  },
 })

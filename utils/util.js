@@ -1,23 +1,25 @@
 const util_time = require('./util_time.js')
 
-let getFlag = (ctx, cb) => {
-  let tableId = getApp().globalData.tableFlagId,
-    Flags = new wx.BaaS.TableObject(tableId)
+let getPhotos = (ctx, cb) => {
+  let tableId = getApp().globalData.tablePhotoId,
+    Glarry = new wx.BaaS.TableObject(tableId)
 
-  Flags.find()
+  Glarry.find()
     .then(res => cb(res))
     .catch(err => console.dir(err))
 }
 
 let addPhoto = (ctx, cb) => {
   let tableId = getApp().globalData.tablePhotoId
+  let userInfo = getApp().globalData.userInfo
 
   let Photo = new wx.BaaS.TableObject(tableId)
   let photo = Photo.create()
-  let user_id = ctx.data.user.id
+  let user_id = userInfo.id
   let name = ctx.data.name
   let path = ctx.data.path
   let remark = ctx.data.remark
+  let position = ctx.data.position
   let time = util_time.formatTime(new Date())
 
   let data = {
@@ -25,6 +27,7 @@ let addPhoto = (ctx, cb) => {
     name,
     path,
     remark,
+    position,
     time
   }
 
@@ -42,7 +45,7 @@ function isEmptyObject(e) {
 }
 
 module.exports = {
-  getFlag: getFlag,
+  getPhotos: getPhotos,
   isEmptyObject: isEmptyObject,
   addPhoto: addPhoto,
 }

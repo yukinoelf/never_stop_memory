@@ -1,0 +1,8 @@
+/* pages/gallary/gallary.wxss */
+.container {
+  display: flex;
+  box-sizing:border-box;
+  flex-flow:row wrap;
+  justify-content:space-around;
+  padding:10px;
+}

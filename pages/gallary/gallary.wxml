@@ -1,0 +1,11 @@
+<!--pages/gallary/gallary.wxml-->
+<view class='container'> 
+  <view wx:for="{{imageUrlList}}" wx:for-item="image" wx:key="image.id">
+    <view style='padding: 20rpx 10rpx 25rpx 10rpx'>
+      <image mode='aspectFit' src="{{image.path}}" data-src="{{image.path}}" bindtap="previewImage"></image>
+      <view data-photo="{{image}}" bindtap='editPhoto'>
+        <text style="font-size: 15px;">{{image.name}} ({{image.position}})\n{{image.remark}}</text>
+      </view>
+    </view>    
+ </view> 
+</view>

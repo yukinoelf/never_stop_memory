@@ -1,0 +1,14 @@
+<!--pages/photo_edit/photoEdit.wxml-->
+<view class="photo">
+  <image src="{{path}}"></image>
+</view>
+<view class="address_style">{{position}}</view>
+<view class="position_style" bindtap="positionSelect">点击修改照片拍摄地</view>
+<view class="input_style">标题：
+  <input class="input" name="title" placeholder="请输入标题"
+  bindinput="nameInput"/>
+</view>
+<view class="input_style">内容：
+  <input class="input" name="content" placeholder="请输入内容"
+  bindinput="remarkInput"/>
+</view>
