@@ -15,15 +15,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.image)
-    /*
+    var dataObj = JSON.parse(options.dataObj)
+    console.log(options.dataObj)
     this.setData({
-      path: options.image.path,
-      name: options.image.name,
-      remark: options.image.remark,
-      position: options.image.position
+      path: dataObj.path,
+      name: dataObj.name,
+      remark: dataObj.remark,
+      position: dataObj.position
     })
-    */
   },
 
   /**

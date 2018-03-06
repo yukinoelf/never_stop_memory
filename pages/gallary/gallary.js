@@ -85,9 +85,8 @@ Page({
   },
 
   editPhoto: function (e) {
-    console.log(e.target.dataset.photo)
     wx.navigateTo({
-      url: '../photoEdit/photoEdit?image=' + e.target.dataset.imageInfo
+      url: '../photoEdit/photoEdit?dataObj=' + JSON.stringify(e.target.dataset.photo)
     })
   }
 })
