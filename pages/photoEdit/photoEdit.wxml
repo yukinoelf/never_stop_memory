@@ -1,6 +1,6 @@
 <!--pages/photo_edit/photoEdit.wxml-->
 <view class="photo">
-  <image src="{{path}}"></image>
+  <image mode='aspectFit' src="{{path}}"></image>
 </view>
 <view class="address_style">{{position}}</view>
 <view class="position_style" bindtap="positionSelect">点击修改照片拍摄地</view>
@@ -12,3 +12,4 @@
   <input class="input" name="content" value="{{remark}}" placeholder="请输入内容"
   bindinput="remarkInput"/>
 </view>
+<button style="margin: 40rpx;" bindtap="delete" type="warn">删除这段记忆</button>

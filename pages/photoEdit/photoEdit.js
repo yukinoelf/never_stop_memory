@@ -1,14 +1,18 @@
 // pages/photo_edit/photoEdit.js
+const util = require('../../utils/util.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    id: '',
     path: '',
     name: '',
     remark: '',
-    position: ''
+    position: '',
+    deleteFlag: false
   },
 
   /**
@@ -18,6 +22,7 @@ Page({
     var dataObj = JSON.parse(options.dataObj)
     console.log(options.dataObj)
     this.setData({
+      id: dataObj.id,
       path: dataObj.path,
       name: dataObj.name,
       remark: dataObj.remark,
@@ -50,7 +55,33 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    console.log(this.data.deleteFlag)
+    if (this.data.deleteFlag == true) {
+      return
+    }
+
+    util.updatePhoto(this, (res) => {
+      this.setData({id: ''})
+    })
+  },
+
+  nameInput: function (e) {
+    this.setData({
+      name: e.detail.value
+    })
+  },
+
+  remarkInput: function (e) {
+    this.setData({
+      remark: e.detail.value
+    })
+  },
+
+  delete: function (e) {
+    util.deletePhoto(this, (res) => {
+      this.setData({id: '', deleteFlag: true})
+      wx.navigateBack()
+    })
   },
 
   /**

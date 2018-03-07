@@ -1,6 +1,6 @@
 <!--pages/photo/photo.wxml-->
 <view class="photo">
-  <image src="{{path}}"></image>
+  <image mode='aspectFit' src="{{path}}"></image>
 </view>
 <view class="address_style">{{position}}</view>
 <view class="position_style" bindtap="positionSelect">点击选择照片拍摄地</view>

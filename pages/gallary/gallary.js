@@ -14,12 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    util.getPhotos(this, (res) => {
-      console.log(res.data.objects)
-      this.setData({
-        imageUrlList: res.data.objects
-      })
-    })
+
   },
 
   /**
@@ -33,7 +28,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    util.getPhotos(this, (res) => {
+      console.log(res.data.objects)
+      this.setData({
+        imageUrlList: res.data.objects
+      })
+    })
   },
 
   /**

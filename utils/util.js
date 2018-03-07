@@ -37,6 +37,41 @@ let addPhoto = (ctx, cb) => {
     .catch(err => console.dir(err))
 }
 
+let updatePhoto = (ctx, cb) => {
+  let tableId = getApp().globalData.tablePhotoId,
+    recordId = ctx.data.id,
+    name = ctx.data.name,
+    path = ctx.data.path,
+    remark = ctx.data.remark,
+    position = ctx.data.position
+
+  let Photos = new wx.BaaS.TableObject(tableId),
+    Photo = Photos.getWithoutData(recordId)
+
+  let data = {
+    name,
+    path,
+    remark,
+    position
+  }
+
+  Photo.set(data)
+    .update()
+    .then(res => cb(res))
+    .catch(err => console.dir(err))
+}
+
+let deletePhoto = (ctx, cb) => {
+  let tableId = getApp().globalData.tablePhotoId,
+    recordId = ctx.data.id
+
+  let Photos = new wx.BaaS.TableObject(tableId)
+
+  Photos.delete(recordId)
+    .then(res => cb(res))
+    .catch(err => console.dir(err))
+}
+
 function isEmptyObject(e) {
   var t;
   for (t in e)
@@ -48,4 +83,6 @@ module.exports = {
   getPhotos: getPhotos,
   isEmptyObject: isEmptyObject,
   addPhoto: addPhoto,
+  updatePhoto: updatePhoto,
+  deletePhoto: deletePhoto
 }
