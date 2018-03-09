@@ -7,7 +7,7 @@
     你希望回忆过去还是珍惜现在呢？
   </view>
 </view>
-<view  wx:if="{{ user.nickName }}">
+<view wx:if="{{ user.nickName }}">
   <view class="flag-frame">
       <view class="flag-item" bindtap='gallary'>
           <view>回忆过去</view>

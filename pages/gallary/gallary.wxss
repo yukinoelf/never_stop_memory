@@ -6,3 +6,13 @@
   justify-content:space-around;
   padding:10px;
 }
+
+.hint {
+  margin-top: 300rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height:100%;
+  color: blue;
+}

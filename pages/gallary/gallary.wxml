@@ -1,4 +1,5 @@
 <!--pages/gallary/gallary.wxml-->
+<view class='hint' wx:if="{{imageUrlList.length == 0}}">您没有留下任何记忆</view>
 <view class='container'> 
   <view wx:for="{{imageUrlList}}" wx:for-item="image" wx:key="image.id">
     <view style='padding: 20rpx 10rpx 25rpx 10rpx'>
