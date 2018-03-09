@@ -78,10 +78,23 @@ Page({
   },
 
   delete: function (e) {
-    util.deletePhoto(this, (res) => {
-      this.setData({id: '', deleteFlag: true})
-      wx.navigateBack()
+    let that = this
+    wx.showModal({
+      title: '删除记忆',
+      content: '您确定要删除这段记忆吗？',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          util.deletePhoto(that, (res) => {
+            that.setData({ id: '', deleteFlag: true })
+            wx.navigateBack()
+          })
+        } else {
+          console.log('用户点击取消')
+        }
+      }
     })
+
   },
 
   /**

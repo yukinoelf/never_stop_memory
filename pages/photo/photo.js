@@ -20,6 +20,11 @@ Page({
     wx.chooseImage({
       count: 1, // 默认9
       success: function (res) {
+        wx.showToast({
+          title: '上传中...',
+          icon: 'loading',
+          duration: 10000
+        })
         let MyFile = new wx.BaaS.File()
         let fileParams = {
           filePath: res.tempFilePaths[0],
@@ -28,6 +33,7 @@ Page({
 
         MyFile.upload(fileParams, metaData).then((res) => {
           console.log(res.data.path)
+          wx.hideToast()
           that.setData({
             path: res.data.path
           })
