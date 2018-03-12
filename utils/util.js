@@ -3,8 +3,12 @@ const util_time = require('./util_time.js')
 let getPhotos = (ctx, cb) => {
   let tableId = getApp().globalData.tablePhotoId,
     Glarry = new wx.BaaS.TableObject(tableId)
+  let query = new wx.BaaS.Query()
+  let userInfo = getApp().globalData.userInfo
+  let user_id = userInfo.id
+  query.contains('user_id', user_id)
 
-  Glarry.find()
+  Glarry.setQuery(query).find()
     .then(res => cb(res))
     .catch(err => console.dir(err))
 }

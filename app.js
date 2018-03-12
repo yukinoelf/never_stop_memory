@@ -10,7 +10,5 @@ App({
   globalData: {
     userInfo: null,
     tablePhotoId: 25388,
-    cityName: '',
-    cityImage: ''
   }
 })

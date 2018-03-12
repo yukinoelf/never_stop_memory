@@ -9,7 +9,8 @@ Page({
     path: '',
     name: '',
     remark: '',
-    position: ''
+    position: '',
+    storeFlag: false
   },
 
   /**
@@ -32,6 +33,7 @@ Page({
         let metaData = { categoryName: 'sdk' }
 
         MyFile.upload(fileParams, metaData).then((res) => {
+          that.data.storeFlag=true
           console.log(res.data.path)
           wx.hideToast()
           that.setData({
@@ -69,9 +71,11 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    util.addPhoto(this, (res) => {
-      console.log(res.data)
-    })
+    if (this.data.storeFlag == true) {
+      util.addPhoto(this, (res) => {
+        console.log(res.data)
+      })
+    }
   },
 
   /**
