@@ -12,3 +12,4 @@
   <input class="input" name="content" placeholder="请输入内容"
   bindinput="remarkInput"/>
 </view>
+<view class="record_style" bindtap="record">{{recordFlag?'完毕':'您有十二秒时间说出此刻的感受'}}</view>

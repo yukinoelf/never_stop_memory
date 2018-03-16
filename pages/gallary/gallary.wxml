@@ -2,11 +2,13 @@
 <view class='hint' wx:if="{{imageUrlList.length == 0}}">您没有留下任何记忆</view>
 <view class='container'> 
   <view wx:for="{{imageUrlList}}" wx:for-item="image" wx:key="image.id">
-    <view style='padding: 20rpx 10rpx 25rpx 10rpx'>
+    <view style='padding: 10rpx 0rpx 15rpx 0rpx'>
       <image mode='aspectFit' src="{{image.path}}" data-src="{{image.path}}" bindtap="previewImage"></image>
       <view>
-        <text style="font-size: 15px;" data-photo="{{image}}" bindtap="editPhoto">{{image.name}} ({{image.position}})\n{{image.remark}}</text>
+        <text style="font-size: 15px;" data-photo="{{image}}" bindtap="editPhoto">{{image.name}} at {{image.position}}\n{{image.remark}}</text>
       </view>
-    </view>    
- </view> 
+      <audio wx:if="{{image.record}}" name="{{image.name}}的声音记忆" src="{{image.record}}" id="myAudio" controls bindplay="playRecord"></audio>
+    </view>
+    <view style="background:#0b0b0b;width:100%;height:1px"/>
+  </view> 
 </view>

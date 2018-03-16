@@ -24,6 +24,7 @@ let addPhoto = (ctx, cb) => {
   let path = ctx.data.path
   let remark = ctx.data.remark
   let position = ctx.data.position
+  let record = ctx.data.recordPath
   let time = util_time.formatTime(new Date())
 
   let data = {
@@ -32,7 +33,8 @@ let addPhoto = (ctx, cb) => {
     path,
     remark,
     position,
-    time
+    time,
+    record
   }
 
   photo.set(data)
@@ -42,12 +44,14 @@ let addPhoto = (ctx, cb) => {
 }
 
 let updatePhoto = (ctx, cb) => {
+  console.log(ctx.data.recordPath)
   let tableId = getApp().globalData.tablePhotoId,
     recordId = ctx.data.id,
     name = ctx.data.name,
     path = ctx.data.path,
     remark = ctx.data.remark,
-    position = ctx.data.position
+    position = ctx.data.position,
+    record = ctx.data.recordPath
 
   let Photos = new wx.BaaS.TableObject(tableId),
     Photo = Photos.getWithoutData(recordId)
@@ -56,7 +60,8 @@ let updatePhoto = (ctx, cb) => {
     name,
     path,
     remark,
-    position
+    position,
+    record
   }
 
   Photo.set(data)

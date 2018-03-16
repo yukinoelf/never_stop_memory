@@ -21,7 +21,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    this.audioCtx = wx.createAudioContext('myAudio')
   },
 
   /**
@@ -88,5 +88,9 @@ Page({
     wx.navigateTo({
       url: '../photoEdit/photoEdit?dataObj=' + JSON.stringify(e.target.dataset.photo)
     })
+  },
+
+  playRecord: function(e) {
+    this.audioCtx.play()
   }
 })

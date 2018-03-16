@@ -12,4 +12,5 @@
   <input class="input" name="content" value="{{remark}}" placeholder="请输入内容"
   bindinput="remarkInput"/>
 </view>
+<view class="record_style" bindtap="record">{{recordFlag?'完毕':'重新录制'}}</view>
 <button style="margin: 40rpx;" bindtap="delete" type="warn">删除这段记忆</button>

@@ -12,7 +12,9 @@ Page({
     name: '',
     remark: '',
     position: '',
-    deleteFlag: false
+    deleteFlag: false,
+    recordFlag: false,
+    recordPath: ''
   },
 
   /**
@@ -26,7 +28,8 @@ Page({
       path: dataObj.path,
       name: dataObj.name,
       remark: dataObj.remark,
-      position: dataObj.position
+      position: dataObj.position,
+      recordPath: dataObj.record
     })
   },
 
@@ -94,7 +97,80 @@ Page({
         }
       }
     })
+  },
 
+  positionSelect: function (e) {
+    let that = this
+    wx.chooseLocation({
+      success: function (res) {
+        that.setData({
+          position: res.name
+        })
+      },
+    })
+  },
+
+  record: function (e) {
+    let that = this
+    console.log(that.data.recordFlag)
+
+    const recorderManager = wx.getRecorderManager()
+    const options = {
+      duration: 12000,
+      sampleRate: 44100,
+      numberOfChannels: 1,
+      encodeBitRate: 192000,
+      format: 'mp3',
+      frameSize: 50
+    }
+
+    if (that.data.recordFlag == false) {
+      recorderManager.start(options)
+      that.setData({
+        recordFlag: true
+      })
+    } else {
+      that.setData({
+        recordFlag: false
+      })
+      recorderManager.stop()
+    }
+
+    recorderManager.onStop((res) => {
+      console.log('recorder stop', res.tempFilePath)
+      wx.showToast({
+        title: '上传中...',
+        icon: 'loading',
+        duration: 10000
+      })
+      let MyFile = new wx.BaaS.File()
+      let fileParams = {
+        filePath: res.tempFilePath,
+      }
+      let metaData = { categoryName: 'sdk' }
+
+      MyFile.upload(fileParams, metaData).then((res) => {
+        that.data.storeFlag = true
+        console.log(res.data.path)
+        wx.hideToast()
+        that.setData({
+          recordPath: res.data.path
+        })
+      }, (err) => {
+
+      })
+
+      const innerAudioContext = wx.createInnerAudioContext()
+      innerAudioContext.autoplay = true
+      innerAudioContext.src = res.tempFilePath
+      innerAudioContext.onPlay(() => {
+        console.log('开始播放')
+      })
+      innerAudioContext.onError((res) => {
+        console.log(res.errMsg)
+        console.log(res.errCode)
+      })
+    })
   },
 
   /**
