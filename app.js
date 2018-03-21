@@ -2,7 +2,7 @@
 App({
   onLaunch: function () {
     // require SDK
-    require('./sdk-v1.1.4')
+    require('./sdk-v1.2.1')
     // 初始化 SDK
     let clientID = '53aa75bccb91b0d3a55e'
     wx.BaaS.init(clientID)
