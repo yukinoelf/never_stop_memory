@@ -3,6 +3,7 @@ const util_time = require('./util_time.js')
 let getPhotos = (ctx, cb) => {
   let tableId = getApp().globalData.tablePhotoId,
     Glarry = new wx.BaaS.TableObject(tableId)
+
   let query = new wx.BaaS.Query()
   let userInfo = getApp().globalData.userInfo
   let user_id = userInfo.id
@@ -14,17 +15,19 @@ let getPhotos = (ctx, cb) => {
 }
 
 let addPhoto = (ctx, cb) => {
-  let tableId = getApp().globalData.tablePhotoId
-  let userInfo = getApp().globalData.userInfo
+  let tableId = getApp().globalData.tablePhotoId,
+  userInfo = getApp().globalData.userInfo
 
-  let Photo = new wx.BaaS.TableObject(tableId)
-  let photo = Photo.create()
-  let user_id = userInfo.id
-  let name = ctx.data.name
-  let path = ctx.data.path
-  let remark = ctx.data.remark
-  let position = ctx.data.position
-  let record = ctx.data.recordPath
+  let Photo = new wx.BaaS.TableObject(tableId),
+  photo = Photo.create()
+
+  let user_id = userInfo.id,
+  name = ctx.data.name,
+  path = ctx.data.path,
+  remark = ctx.data.remark,
+  position = ctx.data.position,
+  record = ctx.data.recordPath
+
   let time = util_time.formatTime(new Date())
 
   let data = {
